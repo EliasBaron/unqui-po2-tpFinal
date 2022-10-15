@@ -14,4 +14,16 @@ public class Muestra {
 		this.coordenada = coordenada;
 	}
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public double getHora() {
+		return hora;
+	}
+
+	public Coordenada getCoordenada() {
+		return coordenada;
+	}
+
 }
