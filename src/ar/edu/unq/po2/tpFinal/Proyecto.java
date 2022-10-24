@@ -1,18 +1,21 @@
 package ar.edu.unq.po2.tpFinal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Proyecto {
 	private String titulo;
 	private String descripcion;
-	private List<String> categorias;
-	private List<Usuario> usuarios;
-	private List<Muestra> muestras;
+	private List<Categoria> categorias = new ArrayList<>();
+	private List<Desafio> desafiosDisponibles = new ArrayList<>();
+	private List<Usuario> usuarios = new ArrayList<>();
+	private List<Muestra> muestras = new ArrayList<>();
 
-	public Proyecto(String titulo, String descripcion, List<String> categorias) {
+	public Proyecto(String titulo, String descripcion, List<Categoria> categorias, List<Desafio> desafios) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.categorias = categorias;
+		this.desafiosDisponibles = desafios;
 	}
 
 	public String getTitulo() {
@@ -23,7 +26,7 @@ public class Proyecto {
 		return descripcion;
 	}
 
-	public List<String> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
@@ -38,7 +41,13 @@ public class Proyecto {
 
 	public void addMuestra(Muestra muestra) {
 		muestras.add(muestra);
-
 	}
-
+	
+	public List<Desafio> getDesafiosDisponibles() {
+		return desafiosDisponibles;
+	}
+	
+	public boolean estaDisponible(Desafio desafio) {
+		return desafiosDisponibles.contains(desafio);
+	}
 }

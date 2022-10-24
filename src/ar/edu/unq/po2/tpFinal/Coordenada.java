@@ -2,20 +2,20 @@ package ar.edu.unq.po2.tpFinal;
 
 public class Coordenada {
 
-	private int latitud;
-	private int longitud;
+	private double x;
+	private double y;
 
-	public Coordenada(int latitud, int longitud) {
-		this.latitud = latitud;
-		this.longitud = longitud;
+	public Coordenada(double x, double y) {
+		this.x = x;
+		this.y = y;
 	}
 
-	public int getLatitud() {
-		return latitud;
+	public double getX() {
+		return x;
 	}
 
-	public int getLongitud() {
-		return longitud;
+	public double getY() {
+		return y;
 	}
 
 }

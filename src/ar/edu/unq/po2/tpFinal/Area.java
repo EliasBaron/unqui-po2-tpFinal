@@ -8,8 +8,14 @@ public class Area {
 		this.coordenada = coordenada;
 		this.radio = radio;
 	}
-
-	public int obtenerArea() {
+	
+	public boolean verificarCoordenada(Coordenada coordenadaAVerificar) {
+		double xCentro = coordenada.getX();
+		double yCentro = coordenada.getY();
+		double xCoordenada = coordenadaAVerificar.getX();
+		double yCoordenada = coordenadaAVerificar.getY();
+		
+		return(Math.sqrt(Math.pow((xCentro - xCoordenada), 2) + Math.pow((yCentro - yCoordenada), 2)) <= radio);
 	}
 
 }

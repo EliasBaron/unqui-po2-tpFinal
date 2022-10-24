@@ -1,20 +1,32 @@
 package ar.edu.unq.po2.tpFinal;
 
+import java.util.List;
+
 public class Desafio {
-	private int cantidadDeMuestras;
+	private int cantidadDeMuestrasNecesarias;
 	private int dificultad;
 	private int recompensa;
-	private Area area;
-	private RestriccionTemporal restricciones;
+	private Area areaDesafio;
+	private List<RestriccionTemporal> restriccionesTemporales;
 
-	public Desafio(int cantidadDeMuestras, int dificultad, int recompensa, Area area,RestriccionTemporal restricciones) {
-		this.cantidadDeMuestras = cantidadDeMuestras;
+	public Desafio(int cantidadDeMuestrasNecesarias, int dificultad, int recompensa, Area areaDesafio, List<RestriccionTemporal> restriccionesTemporales) {
+		this.cantidadDeMuestrasNecesarias = cantidadDeMuestrasNecesarias;
 		this.dificultad = dificultad;
 		this.recompensa = recompensa;
-		this.area = area;
-		this.restricciones = restricciones;
+		this.areaDesafio = areaDesafio;
+		this.restriccionesTemporales = restriccionesTemporales;
 	}
 	
-	public boolean verificarMuestra(Muestra muestra) {}
+	public int getCantidadDeMuestrasNecesarias() {
+		return cantidadDeMuestrasNecesarias;
+	}
+	
+	public boolean esMuestraValida(Muestra muestra) {
+		return this.verificarRestriccionesTemporales(muestra) && areaDesafio.verificarCoordenada(muestra.getCoordenada());
+	}
+	
+	public boolean verificarRestriccionesTemporales(Muestra muestra) {
+		return restriccionesTemporales.stream().allMatch(restriccionTemporal -> restriccionTemporal.verificar(muestra));
+	}
 
 }
