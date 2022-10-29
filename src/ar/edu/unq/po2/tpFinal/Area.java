@@ -17,5 +17,4 @@ public class Area {
 		
 		return(Math.sqrt(Math.pow((xCentro - xCoordenada), 2) + Math.pow((yCentro - yCoordenada), 2)) <= radio);
 	}
-
 }
