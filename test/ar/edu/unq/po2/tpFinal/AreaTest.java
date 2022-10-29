@@ -40,5 +40,6 @@ class AreaTest {
 		coordenada2= new Coordenada(15,10.5);
 		assertFalse(area.verificarCoordenada(coordenada2));
 	}
+	
 
 }
