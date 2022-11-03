@@ -29,5 +29,11 @@ class RestriccionFinDeSemanaTest {
 		fechaPrueba = new GregorianCalendar(2022, 10 - 1, 29).getTime();
 		assertTrue(restriccionFinDeSemana.verificar(fechaPrueba));
 	}
+	
+	@Test
+	void testDiaDomingo() {
+		fechaPrueba = new GregorianCalendar(2022, 10 - 1, 30).getTime();
+		assertTrue(restriccionFinDeSemana.verificar(fechaPrueba));
+	}
 
 }

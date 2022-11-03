@@ -19,14 +19,26 @@ class RestriccionSemanaTest {
 	}
 
 	@Test
-	void testDiaMiercoles() {
-		fechaPrueba = new GregorianCalendar(2022, 10 - 1, 26).getTime();
+	void testDiaViernes() {
+		fechaPrueba = new GregorianCalendar(2022, 5-1, 27).getTime();
+		assertTrue(restriccionSemana.verificar(fechaPrueba));
+	}
+	
+	@Test
+	void testDiaLunes() {
+		fechaPrueba = new GregorianCalendar(2022, 11-1, 01).getTime();
 		assertTrue(restriccionSemana.verificar(fechaPrueba));
 	}
 
 	@Test
 	void testDiaSabado() {
-		fechaPrueba = new GregorianCalendar(2022, 10 - 1, 29).getTime();
+		fechaPrueba = new GregorianCalendar(2022, 10-1, 29).getTime();
+		assertFalse(restriccionSemana.verificar(fechaPrueba));
+	}
+	
+	@Test
+	void testDiaDomingo() {
+		fechaPrueba = new GregorianCalendar(2022, 10-1, 30).getTime();
 		assertFalse(restriccionSemana.verificar(fechaPrueba));
 	}
 }

@@ -26,7 +26,7 @@ class RestriccionFechaTest {
 
 	@Test
 	void testEntreFechas() {
-		fechaPrueba= new GregorianCalendar(2022, 06 - 1, 01).getTime();
+		fechaPrueba= new GregorianCalendar(2022, 05 - 1, 27).getTime();
 		assertTrue(restriccionFecha.verificar(fechaPrueba));
 	}
 	

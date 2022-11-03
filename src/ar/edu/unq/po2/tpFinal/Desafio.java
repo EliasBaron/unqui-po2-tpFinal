@@ -26,7 +26,7 @@ public class Desafio {
 	}
 	
 	public boolean verificarRestriccionesTemporales(Muestra muestra) {
-		return restriccionesTemporales.stream().allMatch(restriccionTemporal -> restriccionTemporal.verificar(muestra));
+		return restriccionesTemporales.stream().allMatch(restriccionTemporal -> restriccionTemporal.verificar(muestra.getFecha()));
 	}
 
 }
