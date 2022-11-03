@@ -50,4 +50,12 @@ public class Proyecto {
 	public boolean estaDisponible(Desafio desafio) {
 		return desafiosDisponibles.contains(desafio);
 	}
+	
+	public boolean incluyeCategorias(List<Categoria> categorias) {
+		return this.getCategorias().containsAll(categorias);
+	}
+	
+	public boolean incluyeTextoEnTitulo(String texto) {
+		return this.getTitulo().contains(texto);
+	}
 }
