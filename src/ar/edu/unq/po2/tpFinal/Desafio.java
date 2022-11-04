@@ -9,24 +9,35 @@ public class Desafio {
 	private Area areaDesafio;
 	private List<RestriccionTemporal> restriccionesTemporales;
 
-	public Desafio(int cantidadDeMuestrasNecesarias, int dificultad, int recompensa, Area areaDesafio, List<RestriccionTemporal> restriccionesTemporales) {
+	public Desafio(int cantidadDeMuestrasNecesarias, int dificultad, int recompensa, Area areaDesafio,
+			List<RestriccionTemporal> restriccionesTemporales) {
 		this.cantidadDeMuestrasNecesarias = cantidadDeMuestrasNecesarias;
 		this.dificultad = dificultad;
 		this.recompensa = recompensa;
 		this.areaDesafio = areaDesafio;
 		this.restriccionesTemporales = restriccionesTemporales;
 	}
-	
+
 	public int getCantidadDeMuestrasNecesarias() {
 		return cantidadDeMuestrasNecesarias;
 	}
-	
+
 	public boolean esMuestraValida(Muestra muestra) {
-		return this.verificarRestriccionesTemporales(muestra) && areaDesafio.verificarCoordenada(muestra.getCoordenada());
+		return this.verificarRestriccionesTemporales(muestra)
+				&& areaDesafio.verificarCoordenada(muestra.getCoordenada());
 	}
-	
+
 	public boolean verificarRestriccionesTemporales(Muestra muestra) {
-		return restriccionesTemporales.stream().allMatch(restriccionTemporal -> restriccionTemporal.verificar(muestra.getFecha()));
+		return restriccionesTemporales.stream()
+				.allMatch(restriccionTemporal -> restriccionTemporal.verificar(muestra.getFecha()));
+	}
+
+	public int getDificultad() {
+		return dificultad;
+	}
+
+	public int getRecompensa() {
+		return recompensa;
 	}
 
 }

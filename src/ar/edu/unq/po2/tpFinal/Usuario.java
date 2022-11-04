@@ -9,7 +9,7 @@ public class Usuario {
 	private int cantidadMuestrasPreferida;
 	private int dificultadPreferida;
 	private int recompensaPreferida;
-//	private TipoRecomendacion recomendacionPreferida;
+	private TipoRecomendacion recomendacionPreferida;
 	private List<Proyecto> proyectosUsuario = new ArrayList<>();
 	private List<Muestra> muestrasUsuario = new ArrayList<>();
 	private List<DesafioAceptado> desafiosAceptados = new ArrayList<>();
@@ -60,13 +60,16 @@ public class Usuario {
 
 
 
-//	public List<DesafioAceptado> getDesafiosCompletados() {
-//		//foreach de los desafios retornando los completados
-//	}
+	public List<DesafioAceptado> getDesafiosCompletados() {
+		//filtro de los desafios retornando los completados
+		return desafiosAceptados.stream().filter(desafio-> desafio.getEstaCompleto()).toList();
+		
+		
+	}
 
-//	public double getPromedioPorcentajeCompletitud() {
-//		//foreach con un contador y division?
-//	}
+	public double getPromedioPorcentajeCompletitud() {
+		//foreach con un contador y division?
+	}
 
 //	public boolean estaCompletoDesafio(DesafioAceptado desafio) {
 //

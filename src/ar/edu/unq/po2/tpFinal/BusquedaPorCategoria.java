@@ -2,7 +2,7 @@ package ar.edu.unq.po2.tpFinal;
 
 import java.util.List;
 
-public class BusquedaPorCategoria extends BuscadorDeProyecto{
+public class BusquedaPorCategoria extends Filtro{
 
 
 	private List<Categoria> categoriasAIncluir;

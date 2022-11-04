@@ -2,7 +2,7 @@ package ar.edu.unq.po2.tpFinal;
 
 import java.util.List;
 
-public class BusquedaPorTitulo extends BuscadorDeProyecto {
+public class BusquedaPorTitulo extends Filtro {
 	private String texto;
 	
 	@Override

@@ -2,7 +2,7 @@ package ar.edu.unq.po2.tpFinal;
 
 import java.util.List;
 
-public class ExclusionPorCategoria extends BuscadorDeProyecto{
+public class ExclusionPorCategoria extends Filtro{
 	
 	private List<Categoria> categoriasAIncluir;
 	
