@@ -55,7 +55,7 @@ class DesafioTest {
 	}
 	
 	@Test
-	void testRestriccionesTemporalesInvalidasPorFinde() {
+	void testRestriccionesTemporalesInvalidasPorFindePeroEntreFecha() {
 		coordenadaMuestra = new Coordenada(10, 10);
 		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 28).getTime();
 		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
@@ -83,7 +83,7 @@ class DesafioTest {
 	
 	@Test
 	void esMuestraInvalidaPorAreaSolamente() {
-		coordenadaMuestra = new Coordenada(30, 20);
+		coordenadaMuestra = new Coordenada(30, 15);
 		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 27).getTime();
 		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
 		
