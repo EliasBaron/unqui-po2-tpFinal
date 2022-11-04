@@ -7,7 +7,7 @@ public class PreferenciaJuego extends TipoRecomendacion {
 	@Override
 	public List<Desafio> recomendar(Usuario usuario, List<Desafio> desafios) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.ordenarPorCoincidencia(desafios, usuario).subList(0, 4);
 	}
 
 	@Override
