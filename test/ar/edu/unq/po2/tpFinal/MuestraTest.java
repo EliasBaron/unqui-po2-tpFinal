@@ -10,10 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MuestraTest {
+	
 	Muestra muestra; //SUT
-	
 	private Date fechaMuestra; //DOC
-	
 	private Coordenada coordenadaMuestra; //DOC
 	
 	
