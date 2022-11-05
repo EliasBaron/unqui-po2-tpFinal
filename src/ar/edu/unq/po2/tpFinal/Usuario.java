@@ -97,8 +97,6 @@ public class Usuario {
 	public Date fechaSuperacionDesafio(DesafioUsuario desafioUsuario) {
 		return desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).getMomentoSuperacion();
 	}
-
-	// public List<Desafio> getPreferidos(List<Desafio> desafios){}
 	
 	public Desafio devolverDesafioMayorPuntaje() {
 		List<DesafioUsuario> desafiosCompletados = this.getDesafiosCompletos();
@@ -112,6 +110,18 @@ public class Usuario {
 			
 		}
 		return desafioUsuarioMasGustado.getDesafio();
+	}
+	
+	public void recibirRecomendaciones(List<Desafio> desafios) {
+		List<Desafio> desafiosRecomendados = recomendacionPreferida.recomendar(this, desafios);
+		
+		for(Desafio desafio : desafiosRecomendados) {
+			desafiosUsuario.add(new DesafioUsuario(desafio));
+		}
+	}
+	
+	public void cambiarTipoRecomendacion() {
+		this.recomendacionPreferida = recomendacionPreferida.cambiarRecomendacion();
 	}
 	
 
