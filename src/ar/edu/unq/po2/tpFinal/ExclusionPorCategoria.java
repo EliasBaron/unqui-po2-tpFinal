@@ -6,6 +6,12 @@ public class ExclusionPorCategoria extends Filtro{
 	
 	private List<Categoria> categoriasAIncluir;
 	
+	
+	public ExclusionPorCategoria(List<Categoria> categoriasAIncluir) {
+		this.categoriasAIncluir = categoriasAIncluir;
+	}
+
+
 	@Override
 	public List<Proyecto> filtrar(List<Proyecto> proyectos) {
 		
