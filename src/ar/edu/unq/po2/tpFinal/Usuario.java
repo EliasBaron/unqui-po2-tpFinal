@@ -22,6 +22,22 @@ public class Usuario {
 		this.recomendacionPreferida = recomendacionPreferida;
 	}
 
+	public TipoRecomendacion getRecomendacionPreferida() {
+		return recomendacionPreferida;
+	}
+
+	public List<Proyecto> getProyectosUsuario() {
+		return proyectosUsuario;
+	}
+
+	public List<Muestra> getMuestrasUsuario() {
+		return muestrasUsuario;
+	}
+
+	public List<DesafioUsuario> getDesafiosUsuario() {
+		return desafiosUsuario;
+	}
+
 	public void addMuestra(Muestra muestra) {
 		muestrasUsuario.add(muestra);
 		this.notificarDesafios(muestra);
@@ -51,6 +67,10 @@ public class Usuario {
 		for (DesafioUsuario desafio : this.desafiosUsuario) {
 			desafio.evaluarMuestra(muestra);
 		}
+	}
+	
+	public void agregarDesafioPorAceptar(Desafio desafio) {
+		desafiosUsuario.add(new DesafioUsuario(desafio));
 	}
 
 	public void aceptarDesafio(DesafioUsuario desafioUsuario) {
