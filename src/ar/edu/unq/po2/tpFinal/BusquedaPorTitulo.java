@@ -5,6 +5,10 @@ import java.util.List;
 public class BusquedaPorTitulo extends Filtro {
 	private String texto;
 	
+	public BusquedaPorTitulo(String texto) {
+		this.texto = texto;
+	}
+
 	@Override
 	public List<Proyecto> filtrar(List<Proyecto> proyectos) {
 		
