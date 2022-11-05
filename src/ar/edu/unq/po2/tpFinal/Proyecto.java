@@ -26,6 +26,10 @@ public class Proyecto {
 		return descripcion;
 	}
 
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
