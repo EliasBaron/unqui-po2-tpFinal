@@ -12,8 +12,8 @@ public class DesafioCompleto extends EstadoDesafioUsuario {
 	}
 
 	@Override
-	public Date getMomentoSuperacion() {
-		return desafioUsuario.fechaSuperacion;
+	public Date getMomentoSuperacion(Date fechaSuperacion) {
+		return fechaSuperacion;
 	}
 
 	@Override

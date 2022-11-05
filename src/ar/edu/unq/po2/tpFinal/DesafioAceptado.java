@@ -12,7 +12,7 @@ public class DesafioAceptado extends EstadoDesafioUsuario{
 	}
 
 	@Override
-	public Date getMomentoSuperacion(){
+	public Date getMomentoSuperacion(Date fecha){
 		return null;
 	}
 	

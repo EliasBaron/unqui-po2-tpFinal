@@ -7,9 +7,9 @@ public class DesafioUsuario {
 	private Desafio desafio;
 	private EstadoDesafioUsuario estado;
 	private int calificacion;
-	Date fechaSuperacion;
-	int cantidadMuestrasTomadas;
-	int cantidadMuestrasNecesarias;
+	private Date fechaSuperacion;
+	private int cantidadMuestrasTomadas;
+	private int cantidadMuestrasNecesarias;
 
 	public DesafioUsuario(Desafio desafio) {
 		this.desafio = desafio;
@@ -19,7 +19,7 @@ public class DesafioUsuario {
 	}
 	
 	public Date getMomentoSuperacion() {
-		return estado.getMomentoSuperacion();
+		return estado.getMomentoSuperacion(this.fechaSuperacion);
 	}
 
 	public boolean getEstaCompleto() {

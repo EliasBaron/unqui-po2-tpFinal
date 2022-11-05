@@ -4,7 +4,7 @@ import java.util.Date;
 
 public abstract class EstadoDesafioUsuario {
 
-	public abstract Date getMomentoSuperacion();
+	public abstract Date getMomentoSuperacion(Date fechaSuperacion);
 
 	public abstract boolean getEstaCompleto();
 	
