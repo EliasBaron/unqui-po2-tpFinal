@@ -45,6 +45,17 @@ class DesafioUsuarioTest {
 	}
 	
 	@Test
+	void noAgregaMuestrasEstadoInicial() {
+		when(desafio.esMuestraValida(muestra)).thenReturn(true);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		
+		assertFalse(desafioUsuario.getEstaCompleto());
+	}
+	
+	@Test
 	void testGetEstaCompletoEstandoCompleto() {
 		desafioUsuario.serAceptado();
 		when(desafio.esMuestraValida(muestra)).thenReturn(true);
@@ -120,16 +131,4 @@ class DesafioUsuarioTest {
 		
 		assertEquals(100, desafioUsuario.getPorcentajeCompletitud());
 	}
-	
-	
-//	@Test
-//	void testGetMomentoSuperacionDesafioCompleto() {
-//		desafioUsuario.setEstado(estadoAceptado);
-//		Muestra muestra2 = mock(Muestra.class);
-//		when(desafio.esMuestraValida(muestra)).thenReturn(true);
-//		when(desafio.esMuestraValidaZZZZ(muestra2)).thenReturn(true);
-//		
-//		assertEquals(muestra2.getFecha(), desafioUsuario.getMomentoSuperacion());
-//	}
-
 }
