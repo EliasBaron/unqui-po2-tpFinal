@@ -1,111 +1,90 @@
 package ar.edu.unq.po2.tpFinal;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 class DesafioTest {
 	
-	private Desafio desafio;
+	private Desafio desafio; //SUT
+	private Area areaDesafio; //DOC
 	private List<RestriccionTemporal> restriccionesTemporales;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private RestriccionSemana restriccionSemana;
-	private RestriccionFecha restriccionFecha;
-	private Area areaDesafio;
-	private Coordenada coordenadaDesafio;
-	
-	private Muestra muestraTest;
-	private Coordenada coordenadaMuestra;
-	private Date fechaMuestra;
-	
-	
-	private Area area;
-	
+	private RestriccionTemporal restriccion1; //DOC
+	private RestriccionTemporal restriccion2; //DOC
+	private Muestra muestra; //DOC
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		areaDesafio = mock(Area.class);
+		restriccion1 = mock(RestriccionTemporal.class);
+		restriccion2 = mock(RestriccionTemporal.class);
+		restriccionesTemporales = Arrays.asList(restriccion1, restriccion2);
+		desafio = new Desafio(1, 2, 3, areaDesafio, restriccionesTemporales);
 		
-		fechaInicio = new GregorianCalendar(2022, 05 - 1, 01).getTime();
-		fechaFin = new GregorianCalendar(2022, 05 - 1, 31).getTime();
-		restriccionSemana = new RestriccionSemana();
-		restriccionFecha = new RestriccionFecha(fechaInicio, fechaFin);
-		restriccionesTemporales = new ArrayList<>(Arrays.asList(restriccionFecha, restriccionSemana));
-		coordenadaDesafio = new Coordenada(10, 10);
-		areaDesafio = new Area(coordenadaDesafio, 10);
-		desafio = new Desafio(0, 0, 0, areaDesafio, restriccionesTemporales);
-		
+		muestra = mock(Muestra.class);
+	}
+	
+	@Test
+	void testGetCantidadMuestrasNecesarias() {
+		assertEquals(1, desafio.getCantidadDeMuestrasNecesarias());
+	}
+	
+	@Test
+	void testGetDificultad() {
+		assertEquals(2, desafio.getDificultad());
+	}
+	
+	@Test
+	void testGetRecompensa() {
+		assertEquals(3, desafio.getRecompensa());
 	}
 
 	@Test
-	void testRestriccionesTemporalesValidas() {
-		coordenadaMuestra = new Coordenada(10, 10);
-		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 27).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
-
-		assertTrue(desafio.verificarRestriccionesTemporales(muestraTest));
-	}
-	
-	@Test
-	void testRestriccionesTemporalesInvalidasPorFindePeroEntreFecha() {
-		coordenadaMuestra = new Coordenada(10, 10);
-		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 28).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
-
-		assertFalse(desafio.verificarRestriccionesTemporales(muestraTest));
-	}
-	
-	@Test
-	void testRestriccionesTemporalesInvalidasPorFueraDeFechaPeroSemana() {
-		coordenadaMuestra = new Coordenada(10, 10);
-		fechaMuestra = new GregorianCalendar(2022, 11 - 1, 02).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
-
-		assertFalse(desafio.verificarRestriccionesTemporales(muestraTest));
-	}
-	
-	@Test
-	void esMuestraValida() {
-		coordenadaMuestra = new Coordenada(15, 18);
-		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 27).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
+	void testPasaLasRestriccionesTemporales() {
+		when(restriccion1.verificar(muestra.getFecha())).thenReturn(true);
+		when(restriccion2.verificar(muestra.getFecha())).thenReturn(true);
 		
-		assertTrue(desafio.esMuestraValida(muestraTest));
+		assertTrue(desafio.verificarRestriccionesTemporales(muestra));
 	}
 	
 	@Test
-	void esMuestraInvalidaPorAreaSolamente() {
-		coordenadaMuestra = new Coordenada(30, 15);
-		fechaMuestra = new GregorianCalendar(2022, 05 - 1, 27).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
+	void testPasaUnaRestriccionTemporalPeroOtraNo() {
+		when(restriccion1.verificar(muestra.getFecha())).thenReturn(true);
+		when(restriccion2.verificar(muestra.getFecha())).thenReturn(false);
 		
-		assertFalse(desafio.esMuestraValida(muestraTest));
+		assertFalse(desafio.verificarRestriccionesTemporales(muestra));
 	}
 	
 	@Test
-	void esMuestraInvalidaPorFechaSolamente() {
-		coordenadaMuestra = new Coordenada(12, 15);
-		fechaMuestra = new GregorianCalendar(2022, 10 - 1, 27).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
+	void testNoPasaNingunaRestriccionTemporal() {
+		when(restriccion1.verificar(muestra.getFecha())).thenReturn(false);
+		when(restriccion2.verificar(muestra.getFecha())).thenReturn(false);
 		
-		assertFalse(desafio.esMuestraValida(muestraTest));
+		assertFalse(desafio.verificarRestriccionesTemporales(muestra));
 	}
 	
 	@Test
-	void esMuestraInvalidaPorFechaYArea() {
-		coordenadaMuestra = new Coordenada(30, 15);
-		fechaMuestra = new GregorianCalendar(2022, 10 - 1, 27).getTime();
-		muestraTest = new Muestra(fechaMuestra, 0, coordenadaMuestra);
+	void testEsMuestraValida() {
+		when(restriccion1.verificar(muestra.getFecha())).thenReturn(true);
+		when(restriccion2.verificar(muestra.getFecha())).thenReturn(true);
+		when(areaDesafio.verificarCoordenada(muestra.getCoordenada())).thenReturn(true);
 		
-		assertFalse(desafio.esMuestraValida(muestraTest));
+		assertTrue(desafio.esMuestraValida(muestra));
+	}
+	
+	@Test
+	void testEsMuestraInvalidaPorArea() {
+		when(restriccion1.verificar(muestra.getFecha())).thenReturn(true);
+		when(restriccion2.verificar(muestra.getFecha())).thenReturn(true);
+		when(areaDesafio.verificarCoordenada(muestra.getCoordenada())).thenReturn(false);
+		
+		assertFalse(desafio.esMuestraValida(muestra));
 	}
 
 }
