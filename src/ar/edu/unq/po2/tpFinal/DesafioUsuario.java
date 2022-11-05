@@ -4,15 +4,18 @@ import java.util.Date;
 
 public class DesafioUsuario {
 
-//	private Usuario usuario;
 	private Desafio desafio;
 	private EstadoDesafioUsuario estado;
 	private int calificacion;
+	Date fechaSuperacion;
+	int cantidadMuestrasTomadas;
+	int cantidadMuestrasNecesarias;
 
 	public DesafioUsuario(Desafio desafio) {
-//		this.usuario = usuario;s
 		this.desafio = desafio;
 		this.estado = new DesafioNoAceptado(this);
+		this.cantidadMuestrasTomadas = 0;
+		this.cantidadMuestrasNecesarias = desafio.getCantidadDeMuestrasNecesarias();
 	}
 	
 	public Date getMomentoSuperacion() {
@@ -40,31 +43,35 @@ public class DesafioUsuario {
 	}
 	
 	public void evaluarMuestra(Muestra muestra) {
-		estado.evaluarMuestra(muestra);
-	}
-
-	public boolean fueAceptado() {
-		return estado.fueAceptado();
+		estado.evaluarMuestra(muestra, this.desafio);
 	}
 
 	public void serAceptado() {
-		this.setEstado(new DesafioAceptado(this, this.desafio));
+		estado.serAceptadoDesafioUsuario(this);
 	}
 	
 	public void recibirCalificacion(int calificacion) {
-		this.calificacion = calificacion;
+		if (estado.puedeSerCalificado()) {
+			this.calificacion = calificacion;
+		}
 	}
 	
 	public int getCalificacion() {
 		return this.calificacion;
 	}
-
-	public double getPorcentajeCompletitud() {
-		return estado.getPorcentajeCompletitud();
+	
+	public void sumarMuestra(Muestra muestra) {
+		cantidadMuestrasTomadas++;
+		this.evaluarCompletitud(muestra);
 	}
 	
-//	public double getPorcentajeCompletitud() {
-//		return (cantidadMuestrasTomadas / desafio.getCantidadDeMuestrasNecesarias()) * 100;
-//	}
-
+	public void evaluarCompletitud(Muestra muestra) {
+		if (cantidadMuestrasTomadas == cantidadMuestrasNecesarias) {
+			this.setEstado(new DesafioCompleto(this));
+		}
+	}
+	
+	public double getPorcentajeCompletitud() {
+		return (cantidadMuestrasTomadas / cantidadMuestrasNecesarias) * 100;
+	}
 }

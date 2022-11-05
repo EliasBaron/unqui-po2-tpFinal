@@ -54,7 +54,7 @@ public class Usuario {
 	}
 
 	public void aceptarDesafio(DesafioUsuario desafioUsuario) {
-		if (this.algunProyectoTiene(desafioUsuario.getDesafio()) && !desafioUsuario.fueAceptado()) {
+		if (this.algunProyectoTiene(desafioUsuario.getDesafio())) {
 			desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).serAceptado();
 		}
 	}

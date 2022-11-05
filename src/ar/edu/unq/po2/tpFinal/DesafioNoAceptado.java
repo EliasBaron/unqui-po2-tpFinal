@@ -20,17 +20,23 @@ public class DesafioNoAceptado extends EstadoDesafioUsuario{
 		return false;
 	}
 
-	@Override
-	public void evaluarMuestra(Muestra muestra) {
-	}
 
 	@Override
-	protected boolean estaAceptadoAlMomento() {
+	public boolean estaAceptadoAlMomento() {
 		return false;
 	}
 
 	@Override
-	protected boolean fueAceptado() {
+	public void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario) {
+		desafioUsuario.setEstado(new DesafioAceptado(desafioUsuario));
+	}
+
+	@Override
+	public void evaluarMuestra(Muestra muestra, Desafio desafio) {
+	}
+
+	@Override
+	public boolean puedeSerCalificado() {
 		return false;
 	}
 	

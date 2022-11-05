@@ -5,15 +5,10 @@ import java.util.Date;
 public class DesafioAceptado extends EstadoDesafioUsuario{
 
 	DesafioUsuario desafioUsuario;
-	Desafio desafio;
-	int cantidadMuestrasTomadas;
-	int cantidadMuestrasNecesarias;
 	
-	public DesafioAceptado(DesafioUsuario desafioUsuario, Desafio desafio) {
+	
+	public DesafioAceptado(DesafioUsuario desafioUsuario) {
 		this.desafioUsuario = desafioUsuario;
-		this.cantidadMuestrasTomadas = 0;
-		this.desafio = desafio;
-		this.cantidadMuestrasNecesarias = desafio.getCantidadDeMuestrasNecesarias();
 	}
 
 	@Override
@@ -27,32 +22,24 @@ public class DesafioAceptado extends EstadoDesafioUsuario{
 	}
 
 	@Override
-	public void evaluarMuestra(Muestra muestra) {
+	public boolean estaAceptadoAlMomento() {
+		return true;
+	}
+
+	@Override
+	public void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario) {
+	}
+
+	@Override
+	public void evaluarMuestra(Muestra muestra, Desafio desafio) {
 		if (desafio.esMuestraValida(muestra)) {
-			cantidadMuestrasTomadas++;
-			this.evaluarCompletitud(muestra);
-		}
-	}
-	
-	public void evaluarCompletitud(Muestra muestra) {
-		if (cantidadMuestrasTomadas == cantidadMuestrasNecesarias) {
-			desafioUsuario.setEstado(new DesafioCompleto(desafioUsuario, muestra.getFecha()));
+			desafioUsuario.sumarMuestra(muestra);
 		}
 	}
 
 	@Override
-	protected boolean estaAceptadoAlMomento() {
+	public boolean puedeSerCalificado() {
 		return true;
-	}
-
-	@Override
-	protected boolean fueAceptado() {
-		return true;
-	}
-
-	@Override
-	protected double getPorcentajeCompletitud() {
-		return (cantidadMuestrasTomadas / cantidadMuestrasNecesarias) * 100;
 	}
 
 	

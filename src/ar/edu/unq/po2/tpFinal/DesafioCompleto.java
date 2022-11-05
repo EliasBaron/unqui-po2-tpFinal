@@ -5,16 +5,15 @@ import java.util.Date;
 public class DesafioCompleto extends EstadoDesafioUsuario {
 
 	DesafioUsuario desafioUsuario;
-	Date fechaSuperacion;
+
 	
-	public DesafioCompleto(DesafioUsuario desafioUsuario, Date fechaSuperacion) {
+	public DesafioCompleto(DesafioUsuario desafioUsuario) {
 		this.desafioUsuario = desafioUsuario;
-		this.fechaSuperacion = fechaSuperacion;
 	}
 
 	@Override
 	public Date getMomentoSuperacion() {
-		return this.fechaSuperacion;
+		return desafioUsuario.fechaSuperacion;
 	}
 
 	@Override
@@ -23,22 +22,23 @@ public class DesafioCompleto extends EstadoDesafioUsuario {
 	}
 
 	@Override
-	public void evaluarMuestra(Muestra muestra) {
-	}
-
-	@Override
-	protected boolean estaAceptadoAlMomento() {
+	public boolean estaAceptadoAlMomento() {
 		return false;
 	}
 
 	@Override
-	protected boolean fueAceptado() {
-		return true;   // como es un desafio completo en algun momento fué aceptado (para no poder repetir desafios)
+	public void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario) {
+		
 	}
 
 	@Override
-	protected double getPorcentajeCompletitud() {
-		return 100;
+	public void evaluarMuestra(Muestra muestra, Desafio desafio) {
+		
+	}
+
+	@Override
+	public boolean puedeSerCalificado() {
+		return true;
 	}
 
 }

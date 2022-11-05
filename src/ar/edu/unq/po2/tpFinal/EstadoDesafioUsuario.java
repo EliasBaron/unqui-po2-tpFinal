@@ -8,11 +8,11 @@ public abstract class EstadoDesafioUsuario {
 
 	public abstract boolean getEstaCompleto();
 	
-	public abstract void evaluarMuestra(Muestra muestra);
+	public abstract void evaluarMuestra(Muestra muestra, Desafio desafio);
 
-	protected abstract boolean estaAceptadoAlMomento();
+	public abstract boolean estaAceptadoAlMomento();
+	
+	public abstract void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario);
 
-	protected abstract boolean fueAceptado();
-
-	protected abstract double getPorcentajeCompletitud();
+	public abstract boolean puedeSerCalificado();
 }
