@@ -29,12 +29,12 @@ public abstract class TipoRecomendacion {
 	public List<Desafio> ordenarPorCoincidencia(List<Desafio> desafios, Usuario usuario){
 		
 
-		List<Desafio> listaSorteada = desafios;
+		List<Desafio> listaFiltradaSorteada = usuario.excluirDesafiosAceptados(desafios);
 		List<Desafio> listaFinal = new ArrayList<>();
 		
-		Collections.sort(listaSorteada, (d1,d2) -> this.coincidenciaParaDesafio(d1, usuario).compareTo(this.coincidenciaParaDesafio(d2, usuario)));
+		Collections.sort(listaFiltradaSorteada, (d1,d2) -> this.coincidenciaParaDesafio(d1, usuario).compareTo(this.coincidenciaParaDesafio(d2, usuario)));
 		
-		for(Desafio desafio : listaSorteada) {
+		for(Desafio desafio : listaFiltradaSorteada) {
 			listaFinal.add(desafio);
 		}
 		

@@ -6,9 +6,9 @@ public class PreferenciaJuego extends TipoRecomendacion {
 
 	@Override
 	public List<Desafio> recomendar(Usuario usuario, List<Desafio> desafiosAAceptar) {
-		List<Desafio> listaSinDesafiosTomados = usuario.excluirDesafiosAceptados(desafiosAAceptar);
 		
-		return this.ordenarPorCoincidencia(listaSinDesafiosTomados, usuario).subList(0, 4);
+		
+		return this.ordenarPorCoincidencia(desafiosAAceptar, usuario).subList(0, 4);
 	}
 
 	@Override
@@ -16,5 +16,7 @@ public class PreferenciaJuego extends TipoRecomendacion {
 		
 		return new Favorito();
 	}
+	
+	
 
 }

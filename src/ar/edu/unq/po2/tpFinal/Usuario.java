@@ -99,5 +99,20 @@ public class Usuario {
 	}
 
 	// public List<Desafio> getPreferidos(List<Desafio> desafios){}
+	
+	public Desafio devolverDesafioMayorPuntaje() {
+		List<DesafioUsuario> desafiosCompletados = this.getDesafiosCompletos();
+		DesafioUsuario desafioUsuarioMasGustado = desafiosCompletados.get(0);
+		
+		
+		for (int i = 1; i < desafiosCompletados.size(); i++) {
+			if(desafiosCompletados.get(i).getCalificacion()>desafioUsuarioMasGustado.getCalificacion()) {
+				desafioUsuarioMasGustado=desafiosCompletados.get(i);
+			}
+			
+		}
+		return desafioUsuarioMasGustado.getDesafio();
+	}
+	
 
 }
