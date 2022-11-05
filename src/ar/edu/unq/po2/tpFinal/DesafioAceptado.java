@@ -2,45 +2,59 @@ package ar.edu.unq.po2.tpFinal;
 
 import java.util.Date;
 
-public class DesafioAceptado {
+public class DesafioAceptado extends EstadoDesafioUsuario{
 
-	private Usuario usuario;
-	private Desafio desafio;
-	private boolean estaCompleto;
-	private int cantidadMuestrasTomadas;
-	private Date fechaSuperacion;
-	private int calificacion;
-
-	public DesafioAceptado(Usuario usuario, Desafio desafio) {
-		this.usuario = usuario;
+	DesafioUsuario desafioUsuario;
+	Desafio desafio;
+	int cantidadMuestrasTomadas;
+	int cantidadMuestrasNecesarias;
+	
+	public DesafioAceptado(DesafioUsuario desafioUsuario, Desafio desafio) {
+		this.desafioUsuario = desafioUsuario;
+		this.cantidadMuestrasTomadas = 0;
 		this.desafio = desafio;
-		this.estaCompleto = false;
+		this.cantidadMuestrasNecesarias = desafio.getCantidadDeMuestrasNecesarias();
+	}
+
+	@Override
+	public Date getMomentoSuperacion(){
+		return null;
 	}
 	
-	public Date getMomentoSuperacion() {
-		return fechaSuperacion;
-	}
-
+	@Override
 	public boolean getEstaCompleto() {
-		return estaCompleto;
+		return false;
 	}
 
+	@Override
 	public void evaluarMuestra(Muestra muestra) {
-		if (!estaCompleto && desafio.esMuestraValida(muestra)) {
+		if (desafio.esMuestraValida(muestra)) {
 			cantidadMuestrasTomadas++;
 			this.evaluarCompletitud(muestra);
 		}
 	}
 	
 	public void evaluarCompletitud(Muestra muestra) {
-		if (cantidadMuestrasTomadas == desafio.getCantidadDeMuestrasNecesarias()) {
-			estaCompleto = true;
-			fechaSuperacion = muestra.getFecha();
+		if (cantidadMuestrasTomadas == cantidadMuestrasNecesarias) {
+			desafioUsuario.setEstado(new DesafioCompleto(desafioUsuario, muestra.getFecha()));
 		}
 	}
-	
-	public double getPorcentajeCompletitud() {
-		return (cantidadMuestrasTomadas / desafio.getCantidadDeMuestrasNecesarias()) * 100;
+
+	@Override
+	protected boolean estaAceptadoAlMomento() {
+		return true;
 	}
 
+	@Override
+	protected boolean fueAceptado() {
+		return true;
+	}
+
+	@Override
+	protected double getPorcentajeCompletitud() {
+		return (cantidadMuestrasTomadas / cantidadMuestrasNecesarias) * 100;
+	}
+
+	
+	
 }

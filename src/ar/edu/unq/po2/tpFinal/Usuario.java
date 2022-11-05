@@ -1,8 +1,8 @@
 package ar.edu.unq.po2.tpFinal;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 
 public class Usuario {
 
@@ -12,24 +12,25 @@ public class Usuario {
 	private TipoRecomendacion recomendacionPreferida;
 	private List<Proyecto> proyectosUsuario = new ArrayList<>();
 	private List<Muestra> muestrasUsuario = new ArrayList<>();
-	private List<DesafioAceptado> desafiosAceptados = new ArrayList<>();
+	private List<DesafioUsuario> desafiosUsuario = new ArrayList<>();
 
-	public Usuario(int cantidadMuestrasPreferida, int dificultadPreferida, int recompensaPreferida) {
+	public Usuario(int cantidadMuestrasPreferida, int dificultadPreferida, int recompensaPreferida,
+			TipoRecomendacion recomendacionPreferida) {
 		this.cantidadMuestrasPreferida = cantidadMuestrasPreferida;
 		this.dificultadPreferida = dificultadPreferida;
 		this.recompensaPreferida = recompensaPreferida;
-//		this.recomendacionPreferida = recomendacionPreferida;
+		this.recomendacionPreferida = recomendacionPreferida;
 	}
 
 	public void addMuestra(Muestra muestra) {
 		muestrasUsuario.add(muestra);
 		this.notificarDesafios(muestra);
 	}
-	
+
 	public void addProyecto(Proyecto proyecto) {
 		proyectosUsuario.add(proyecto);
 	}
-	
+
 	public int getCantidadMuestrasPreferida() {
 		return cantidadMuestrasPreferida;
 	}
@@ -41,16 +42,20 @@ public class Usuario {
 	public int getRecompensaPreferida() {
 		return recompensaPreferida;
 	}
-	
+
+	public List<DesafioUsuario> desafiosUsuarioAceptados() {
+		return desafiosUsuario.stream().filter(desafio -> desafio.estaAceptadoAlMomento()).toList();
+	}
+
 	public void notificarDesafios(Muestra muestra) {
-		for (DesafioAceptado desafio : this.desafiosAceptados) {
+		for (DesafioUsuario desafio : this.desafiosUsuario) {
 			desafio.evaluarMuestra(muestra);
 		}
 	}
 
-	public void aceptarDesafio(Desafio desafio) {
-		if (this.algunProyectoTiene(desafio)) {
-			desafiosAceptados.add(new DesafioAceptado(this, desafio));
+	public void aceptarDesafio(DesafioUsuario desafioUsuario) {
+		if (this.algunProyectoTiene(desafioUsuario.getDesafio()) && !desafioUsuario.fueAceptado()) {
+			desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).serAceptado();
 		}
 	}
 
@@ -58,29 +63,41 @@ public class Usuario {
 		return proyectosUsuario.stream().anyMatch(proyecto -> proyecto.estaDisponible(desafio));
 	}
 
+	public List<DesafioUsuario> getDesafiosCompletos() {
 
-
-	public List<DesafioAceptado> getDesafiosCompletados() {
-		//filtro de los desafios retornando los completados
-		return desafiosAceptados.stream().filter(desafio-> desafio.getEstaCompleto()).toList();
-		
-		
+		return desafiosUsuario.stream().filter(desafio -> desafio.getEstaCompleto()).toList();
 	}
 
 	public double getPromedioPorcentajeCompletitud() {
-		//foreach con un contador y division?
+
+		List<DesafioUsuario> desafiosCompletos = this.getDesafiosCompletos();
+
+		return (desafiosCompletos.size() / desafiosUsuario.size()) * 100;
+
 	}
 
-//	public boolean estaCompletoDesafio(DesafioAceptado desafio) {
-//
-//	}
+	public List<Desafio> excluirDesafiosAceptados(List<Desafio> desafiosAAceptar) {
+		List<Desafio> desafiosAceptados = this.desafiosUsuarioAceptados().stream()
+				.map(desafioUsuario -> desafioUsuario.getDesafio()).toList();
 
-//	public void calificarDesafio(DesafioAceptado desafio, int calificacion) {
-//		// desafio.recibirCalificacion(calificacion);
-//	}
+		return desafiosAAceptar.stream().filter(desafio -> !desafiosAceptados.contains(desafio)).toList();
+	}
 
-	// public DesafioAceptado buscarDesafio(Desafio )
-	
+	public void estaCompletoDesafio(DesafioUsuario desafioUsuario) {
+		if (desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).getEstaCompleto()) {
+			desafioUsuario.getEstaCompleto();
+		}
+		else desafioUsuario.getPorcentajeCompletitud();
+	}
+
+	public void calificarDesafio(DesafioUsuario desafioUsuario, int calificacion) {
+		desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).recibirCalificacion(calificacion);
+	}
+
+	public Date fechaSuperacionDesafio(DesafioUsuario desafioUsuario) {
+		return desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).getMomentoSuperacion();
+	}
+
 	// public List<Desafio> getPreferidos(List<Desafio> desafios){}
-	
+
 }
