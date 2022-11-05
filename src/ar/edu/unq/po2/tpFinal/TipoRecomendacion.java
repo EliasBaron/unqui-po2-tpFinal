@@ -28,7 +28,7 @@ public abstract class TipoRecomendacion {
 	
 	public List<Desafio> ordenarPorCoincidencia(List<Desafio> desafios, Usuario usuario){
 		
-//		return Collections.sort(desafios,(d1,d2) -> (Integer.valueOf(this.coincidenciaParaDesafio(d1, usuario)).compareTo((Integer.valueOf(this.coincidenciaParaDesafio(d2, usuario))))));
+
 		List<Desafio> listaSorteada = desafios;
 		List<Desafio> listaFinal = new ArrayList<>();
 		

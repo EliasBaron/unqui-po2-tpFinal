@@ -6,14 +6,14 @@ public class PreferenciaJuego extends TipoRecomendacion {
 
 	@Override
 	public List<Desafio> recomendar(Usuario usuario, List<Desafio> desafiosAAceptar) {
-		List<Desafio> listaSinDesafiosTomados = usuario.excluirAceptados(desafiosAAceptar);
+		List<Desafio> listaSinDesafiosTomados = usuario.excluirDesafiosAceptados(desafiosAAceptar);
 		
-		return this.ordenarPorCoincidencia(desafiosAAceptar, usuario).subList(0, 4);
+		return this.ordenarPorCoincidencia(listaSinDesafiosTomados, usuario).subList(0, 4);
 	}
 
 	@Override
 	public TipoRecomendacion cambiarRecomendacion() {
-		// TODO Auto-generated method stub
+		
 		return new Favorito();
 	}
 
