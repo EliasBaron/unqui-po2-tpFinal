@@ -20,12 +20,8 @@ public class Or extends Filtro {
 
 		List<Proyecto> listaFiltrada1 = operando1.filtrar(lista);
 		List<Proyecto> listaFiltrada2 = operando2.filtrar(lista);
-		//List<Proyecto> listaFinal = new ArrayList<>();
-
-//		listaFinal.addAll(listaFiltrada1);
-//		listaFinal.addAll(listaFiltrada2);
 		
-	return Stream.concat(listaFiltrada1.stream(),listaFiltrada2.stream()).toList();
+		return Stream.concat(listaFiltrada1.stream(),listaFiltrada2.stream()).toList();
 	}
 
 }
