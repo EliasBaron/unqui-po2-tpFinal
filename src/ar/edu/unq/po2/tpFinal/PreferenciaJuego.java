@@ -3,12 +3,13 @@ package ar.edu.unq.po2.tpFinal;
 import java.util.List;
 
 public class PreferenciaJuego extends TipoRecomendacion {
-
+	
 	@Override
 	public List<Desafio> recomendar(Usuario usuario, List<Desafio> desafiosAAceptar) {
 		
+		List<Desafio> desafiosOrdenados = this.ordenarPorCoincidencia(desafiosAAceptar, usuario);
 		
-		return this.ordenarPorCoincidencia(desafiosAAceptar, usuario).subList(0, 4);
+		return desafiosOrdenados.stream().limit(5).toList();
 	}
 
 	@Override
@@ -17,6 +18,4 @@ public class PreferenciaJuego extends TipoRecomendacion {
 		return new Favorito();
 	}
 	
-	
-
 }
