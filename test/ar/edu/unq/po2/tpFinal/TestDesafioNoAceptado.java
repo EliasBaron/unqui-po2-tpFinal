@@ -40,5 +40,10 @@ class TestDesafioNoAceptado {
 	void testPuedeSerCalificado() {
 		assertFalse(desafioNoAceptado.puedeSerCalificado());
 	}
+	
+	@Test
+	void testFueAceptadoPreviamente() {
+		assertFalse(desafioNoAceptado.fueAceptadoPreviamente());
+	}
 
 }

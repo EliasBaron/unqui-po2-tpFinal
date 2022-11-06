@@ -53,5 +53,10 @@ class TestDesafioCompleto {
 	void puedeSerCalificado() {
 		assertTrue(desafioCompleto.puedeSerCalificado());
 	}
+	
+	@Test
+	void testFueAceptadoPreviamente() {
+		assertTrue(desafioCompleto.fueAceptadoPreviamente());
+	}
 
 }

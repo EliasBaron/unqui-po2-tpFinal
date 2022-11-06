@@ -45,6 +45,11 @@ class DesafioUsuarioTest {
 	}
 	
 	@Test
+	void testFueAceptadoPreviamente() {
+		assertFalse(desafioUsuario.fueAceptadoPreviamente());
+	}
+	
+	@Test
 	void noAgregaMuestrasEstadoInicial() {
 		when(desafio.esMuestraValida(muestra)).thenReturn(true);
 		desafioUsuario.evaluarMuestra(muestra);
