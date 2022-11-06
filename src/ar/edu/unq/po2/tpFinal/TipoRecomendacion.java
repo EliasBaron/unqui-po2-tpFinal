@@ -21,24 +21,10 @@ public abstract class TipoRecomendacion {
 		return Math.abs(n1 - n2);
 	}
 	
-//	public List<Desafio> ordenarPorCoincidencia(List<Desafio> desafios, Usuario usuario){
-//		
-//
-//		List<Desafio> listaFiltradaSorteada = usuario.excluirDesafiosAceptados(desafios);
-//		List<Desafio> listaFinal = new ArrayList<>();
-//		
-//		Collections.sort(listaFiltradaSorteada, (d1,d2) -> this.coincidenciaParaDesafio(d1, usuario).compareTo(this.coincidenciaParaDesafio(d2, usuario)));
-//		
-//		for(Desafio desafio : listaFiltradaSorteada) {
-//			listaFinal.add(desafio);
-//		}
-//		
-//		return listaFinal;
-//		
-//	}
+
 	
-	public List<Desafio> ordenarPorCoincidencia(List<Desafio> desafios, Usuario usuario){
-		List<Desafio> desafiosCoincidencia = desafios.stream().sorted(Comparator.comparingInt(d -> this.coincidenciaParaDesafio(d, usuario))).toList();
+	public List<Desafio> ordenarPorCoincidencia(List<Desafio> desafios, Usuario usuario,int tamaño){
+		List<Desafio> desafiosCoincidencia = desafios.stream().sorted(Comparator.comparingInt(d -> this.coincidenciaParaDesafio(d, usuario))).limit(tamaño).toList();
 		
 		return desafiosCoincidencia;
 	}

@@ -7,7 +7,7 @@ public class Favorito extends TipoRecomendacion {
 
 	@Override
 	public List<Desafio> recomendar(Usuario usuario, List<Desafio> desafios) {
-		List<Desafio> listaDe20Coincidencia = this.ordenarPorCoincidencia(desafios, usuario).subList(0, 19);
+		List<Desafio> listaDe20Coincidencia = this.ordenarPorCoincidencia(desafios, usuario, 20);
 		
 		Desafio desafioMasGustadoUsuario = usuario.devolverDesafioMayorPuntaje();
 		
