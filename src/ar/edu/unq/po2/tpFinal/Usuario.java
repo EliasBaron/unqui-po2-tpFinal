@@ -69,12 +69,12 @@ public class Usuario {
 		}
 	}
 	
-	public void agregarDesafioPorAceptar(Desafio desafio) {
+	public void addDesafioPorAceptar(Desafio desafio) {
 		desafiosUsuario.add(new DesafioUsuario(desafio));
 	}
 
 	public void aceptarDesafio(DesafioUsuario desafioUsuario) {
-		if (this.algunProyectoTiene(desafioUsuario.getDesafio())) {
+		if (this.algunProyectoTiene(desafioUsuario.getDesafio()) && !desafioUsuario.fueAceptadoPreviamente()) {
 			desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).serAceptado();
 		}
 	}
@@ -142,6 +142,12 @@ public class Usuario {
 	
 	public void cambiarTipoRecomendacion() {
 		this.recomendacionPreferida = recomendacionPreferida.cambiarRecomendacion();
+	}
+	
+	public void setDesafiosUsuario(List<DesafioUsuario> desafiosUsuario) {
+		this.desafiosUsuario = desafiosUsuario;     //METODO UNICAMENTE PARA LOS TESTS YA QUE NO HAY UN SET
+													//DE DESAFIO USUARIO, SOLAMENTE SE AGREGAN COMO DESAFIO
+													//PERO SE TRANSFORMAN EN OTRA CLASE Y DA PROBLEMAS.
 	}
 	
 

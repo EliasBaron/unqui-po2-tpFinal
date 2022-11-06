@@ -41,7 +41,7 @@ class TestDesafioCompleto {
 	
 	@Test
 	void testSerAceptadoDesafioUsuario() {
-		desafioCompleto.serAceptadoDesafioUsuario(desafioUsuario); // EL METODO NO HACE NADA
+		assertTrue(desafioCompleto.fueAceptadoPreviamente());
 	}
 	
 	@Test

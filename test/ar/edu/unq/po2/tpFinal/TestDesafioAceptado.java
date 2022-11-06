@@ -40,8 +40,8 @@ class TestDesafioAceptado {
 	}
 	
 	@Test
-	void testSerAceptado() {
-		desafioAceptado.serAceptadoDesafioUsuario(desafioUsuario); // no hace nada
+	void testFueAceptado() {
+		assertTrue(desafioAceptado.fueAceptadoPreviamente());
 	}
 	
 	@Test

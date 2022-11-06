@@ -47,7 +47,7 @@ public class DesafioUsuario {
 	}
 
 	public void serAceptado() {
-		estado.serAceptadoDesafioUsuario(this);
+		this.setEstado(new DesafioAceptado(this));
 	}
 	
 	public void recibirCalificacion(int calificacion) {
@@ -73,5 +73,9 @@ public class DesafioUsuario {
 	
 	public double getPorcentajeCompletitud() {
 		return (cantidadMuestrasTomadas / cantidadMuestrasNecesarias) * 100;
+	}
+
+	public boolean fueAceptadoPreviamente() {
+		return estado.fueAceptadoPreviamente();
 	}
 }

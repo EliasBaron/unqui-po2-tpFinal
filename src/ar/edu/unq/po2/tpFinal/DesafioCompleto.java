@@ -27,8 +27,8 @@ public class DesafioCompleto extends EstadoDesafioUsuario {
 	}
 
 	@Override
-	public void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario) {
-		
+	public boolean fueAceptadoPreviamente() {
+		return true;
 	}
 
 	@Override

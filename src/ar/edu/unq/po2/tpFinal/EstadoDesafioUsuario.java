@@ -11,8 +11,8 @@ public abstract class EstadoDesafioUsuario {
 	public abstract void evaluarMuestra(Muestra muestra, Desafio desafio);
 
 	public abstract boolean estaAceptadoAlMomento();
-	
-	public abstract void serAceptadoDesafioUsuario(DesafioUsuario desafioUsuario);
 
 	public abstract boolean puedeSerCalificado();
+
+	protected abstract boolean fueAceptadoPreviamente();
 }
