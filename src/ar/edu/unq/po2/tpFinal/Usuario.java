@@ -103,11 +103,8 @@ public class Usuario {
 		return desafiosAAceptar.stream().filter(desafio -> !desafiosAceptados.contains(desafio)).toList();
 	}
 
-	public void estaCompletoDesafio(DesafioUsuario desafioUsuario) {
-		if (desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).getEstaCompleto()) {
-			desafioUsuario.getEstaCompleto();
-		}
-		else desafioUsuario.getPorcentajeCompletitud();
+	public boolean estaCompletoDesafio(DesafioUsuario desafioUsuario) {
+		return desafiosUsuario.get(desafiosUsuario.indexOf(desafioUsuario)).getEstaCompleto();
 	}
 
 	public void calificarDesafio(DesafioUsuario desafioUsuario, int calificacion) {
