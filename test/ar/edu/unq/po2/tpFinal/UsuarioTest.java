@@ -199,43 +199,58 @@ class UsuarioTest {
 		assertEquals(fechaDesafio, usuario.fechaSuperacionDesafio(desafioUsuario1));
 	}
 
-//	@Test
-//	void testDevolverDesafioMayorPuntaje() {
-//		usuario.setDesafiosUsuario(desafiosUsuario);
-//		
-//		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
-//		when(desafioUsuario2.getEstaCompleto()).thenReturn(true);
-//		when(desafioUsuario3.getEstaCompleto()).thenReturn(true);
-//		
-//		when(desafioUsuario1.getDesafio()).thenReturn(desafio1);
-//
-//		when(desafioUsuario1.getCalificacion()).thenReturn(4);
-//		when(desafioUsuario2.getCalificacion()).thenReturn(5);
-//		when(desafioUsuario3.getCalificacion()).thenReturn(3);
-//
-//		assertEquals(desafio1, usuario.devolverDesafioMayorPuntaje());
-//	}
-////	
-//	@Test
-//	void testRecibirRecomendacion() {
-//		List<Desafio> desafios = Arrays.asList(desafio1, desafio2);
-//		
-//		when(recomendacion.recomendar(usuario, desafios)).thenReturn(desafios);
-//		assertEquals(2,usuario.getDesafiosUsuario().size());
-//	}
+	@Test
+	void testDevolverDesafioMayorPuntaje() {
+		usuario.setDesafiosUsuario(desafiosUsuario);
+		
+		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
+		when(desafioUsuario2.getEstaCompleto()).thenReturn(true);
+		when(desafioUsuario3.getEstaCompleto()).thenReturn(true);
+		
+		when(desafioUsuario1.getDesafio()).thenReturn(desafio1);
+		when(desafioUsuario2.getDesafio()).thenReturn(desafio2);
+		when(desafioUsuario3.getDesafio()).thenReturn(desafio1);
+
+		when(desafioUsuario1.getCalificacion()).thenReturn(4);
+		when(desafioUsuario2.getCalificacion()).thenReturn(5);
+		when(desafioUsuario3.getCalificacion()).thenReturn(3);
+
+		assertEquals(desafio2, usuario.devolverDesafioMayorPuntaje());
+	}
+	
+	@Test
+	void testRecibirRecomendacion() {
+		List<Desafio> desafios = Arrays.asList(desafio1, desafio2);
+		when(recomendacion.recomendar(usuario, desafios)).thenReturn(desafios);
+		usuario.recibirRecomendaciones(desafios);
+		
+		assertEquals(2,usuario.getDesafiosUsuario().size());
+	}
 	
 	@Test
 	void testCambiarRecomendacion() {
 		when(recomendacion.cambiarRecomendacion()).thenReturn(recomendacion2);
 		usuario.cambiarTipoRecomendacion();
 		
+		
 		assertEquals(recomendacion2,usuario.getRecomendacionPreferida());
+		
 	}
+	
+	@Test
+	void testCambiarRecomendaciona() {
+		when(recomendacion.cambiarRecomendacion()).thenReturn(recomendacion2);
+		usuario.cambiarTipoRecomendacion();
+		
+		
+		verify(recomendacion).cambiarRecomendacion();
+		
+	}
+	
 	@Test
 	void testSetDesafiosUsuarios() {
 		usuario.setDesafiosUsuario(desafiosUsuario);
 		assertEquals(desafiosUsuario,usuario.getDesafiosUsuario());
 	}
-	
 
 }
