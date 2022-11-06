@@ -28,6 +28,8 @@ class UsuarioTest {
 	private DesafioUsuario desafioUsuario2;
 	private DesafioUsuario desafioUsuario3;
 	private Proyecto proyecto1;
+	private TipoRecomendacion recomendacion2;
+	
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -36,6 +38,7 @@ class UsuarioTest {
 		muestra2 = mock(Muestra.class);
 
 		recomendacion = mock(TipoRecomendacion.class);
+		recomendacion2 = mock(TipoRecomendacion.class);
 
 		desafio1 = mock(Desafio.class);
 		desafio2 = mock(Desafio.class);
@@ -212,7 +215,7 @@ class UsuarioTest {
 //
 //		assertEquals(desafio1, usuario.devolverDesafioMayorPuntaje());
 //	}
-//	
+////	
 //	@Test
 //	void testRecibirRecomendacion() {
 //		List<Desafio> desafios = Arrays.asList(desafio1, desafio2);
@@ -220,5 +223,19 @@ class UsuarioTest {
 //		when(recomendacion.recomendar(usuario, desafios)).thenReturn(desafios);
 //		assertEquals(2,usuario.getDesafiosUsuario().size());
 //	}
+	
+	@Test
+	void testCambiarRecomendacion() {
+		when(recomendacion.cambiarRecomendacion()).thenReturn(recomendacion2);
+		usuario.cambiarTipoRecomendacion();
+		
+		assertEquals(recomendacion2,usuario.getRecomendacionPreferida());
+	}
+	@Test
+	void testSetDesafiosUsuarios() {
+		usuario.setDesafiosUsuario(desafiosUsuario);
+		assertEquals(desafiosUsuario,usuario.getDesafiosUsuario());
+	}
+	
 
 }
