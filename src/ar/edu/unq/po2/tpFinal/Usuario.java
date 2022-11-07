@@ -59,7 +59,7 @@ public class Usuario {
 		return recompensaPreferida;
 	}
 
-	public List<DesafioUsuario> desafiosUsuarioAceptados() {
+	public List<DesafioUsuario> getDesafiosUsuarioAceptados() {
 		return desafiosUsuario.stream().filter(desafio -> desafio.estaAceptadoAlMomento()).toList();
 	}
 
@@ -97,7 +97,7 @@ public class Usuario {
 	}
 
 	public List<Desafio> excluirDesafiosAceptados(List<Desafio> desafiosAAceptar) {
-		List<Desafio> desafiosAceptados = this.desafiosUsuarioAceptados().stream()
+		List<Desafio> desafiosAceptados = this.getDesafiosUsuarioAceptados().stream()
 				.map(desafioUsuario -> desafioUsuario.getDesafio()).toList();
 
 		return desafiosAAceptar.stream().filter(desafio -> !desafiosAceptados.contains(desafio)).toList();

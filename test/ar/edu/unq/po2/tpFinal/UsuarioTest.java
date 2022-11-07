@@ -108,7 +108,7 @@ class UsuarioTest {
 		when(desafioUsuario2.estaAceptadoAlMomento()).thenReturn(false);
 		when(desafioUsuario3.estaAceptadoAlMomento()).thenReturn(true);
 
-		assertEquals(Arrays.asList(desafioUsuario1, desafioUsuario3), usuario.desafiosUsuarioAceptados());
+		assertEquals(Arrays.asList(desafioUsuario1, desafioUsuario3), usuario.getDesafiosUsuarioAceptados());
 	}
 
 	@Test
