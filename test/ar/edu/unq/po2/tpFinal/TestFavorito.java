@@ -12,20 +12,20 @@ import org.junit.jupiter.api.Test;
 
 class TestFavorito {
 
-	Favorito favorito;//SUT
-	List<Desafio> listaDesafios;
-	Desafio d1;
-	Desafio d2;
-	Desafio d3;
-	Desafio d4;
-	Desafio d5;
-	Desafio d6;
-	Desafio d7;
-	Desafio d8;
-	Desafio d9;
-	Desafio d10;
-	Desafio desafioFavorito;
-	Usuario usuario;
+	private Favorito favorito;//SUT
+	private List<Desafio> listaDesafios;
+	private Desafio d1;	//DOC
+	private Desafio d2;	//DOC
+	private Desafio d3;	//DOC
+	private Desafio d4;	//DOC
+	private Desafio d5;	//DOC
+	private Desafio d6;	//DOC
+	private Desafio d7;	//DOC
+	private Desafio d8;	//DOC
+	private Desafio d9;	//DOC
+	private Desafio d10;	//DOC
+	private Desafio desafioFavorito;	//DOC
+	private Usuario usuario;	//DOC
 	
 	
 	@BeforeEach

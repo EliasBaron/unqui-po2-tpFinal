@@ -12,15 +12,15 @@ import org.junit.jupiter.api.Test;
 
 class TestPreferenciaJuego {
 
-	PreferenciaJuego preferenciaJuego;//SUT
-	List<Desafio> listaDesafios;
-	Desafio d1;
-	Desafio d2;
-	Desafio d3;
-	Desafio d4;
-	Desafio d5;
-	Desafio d6;
-	Usuario usuario;
+	private PreferenciaJuego preferenciaJuego;//SUT
+	private List<Desafio> listaDesafios;
+	private Desafio d1;	//DOC
+	private Desafio d2;	//DOC
+	private Desafio d3;	//DOC
+	private Desafio d4;	//DOC
+	private Desafio d5;	//DOC
+	private Desafio d6;	//DOC
+	private Usuario usuario;	//DOC
 	
 	
 	@BeforeEach

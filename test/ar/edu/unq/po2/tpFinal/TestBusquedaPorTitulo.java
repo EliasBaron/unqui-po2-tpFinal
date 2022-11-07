@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 class TestBusquedaPorTitulo {
 	
-	private BusquedaPorTitulo buscador;
-	List<Proyecto> listaProyectos;
-	Proyecto p1;
-	Proyecto p2;
-	Proyecto p3;
-	Proyecto p4;
-	Proyecto p5;
-	String texto;
+	private BusquedaPorTitulo buscador;	//SUT
+	private List<Proyecto> listaProyectos;
+	private Proyecto p1;	//DOC
+	private Proyecto p2;	//DOC
+	private Proyecto p3;	//DOC
+	private Proyecto p4;	//DOC
+	private Proyecto p5;	//DOC
+	private String texto;	//DOC
 	
 	@BeforeEach
 	void setUp() throws Exception {

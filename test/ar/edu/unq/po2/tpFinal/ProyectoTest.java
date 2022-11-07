@@ -12,21 +12,21 @@ import org.junit.jupiter.api.Test;
 
 class ProyectoTest {
 
-	private Proyecto proyecto;
-	private String titulo;
-	private String descripcion;
-	private Categoria categoria1;
-	private Categoria categoria2;
-	private Desafio desafio1;
-	private Desafio desafio2;
-	private Usuario usuario1;
-	private Usuario usuario2;
-	private Muestra muestra1;
-	private Muestra muestra2;
-	private List<Categoria> categorias;
-	private List<Desafio> desafiosDisponibles;
-	private List<Usuario> usuarios;
-	private List<Muestra> muestras;
+	private Proyecto proyecto;	//SUT
+	private String titulo;	//DOC
+	private String descripcion;	//DOC
+	private Categoria categoria1;	//DOC
+	private Categoria categoria2;	//DOC
+	private Desafio desafio1;	//DOC
+	private Desafio desafio2;	//DOC
+	private Usuario usuario1;	//DOC
+	private Usuario usuario2;	//DOC
+	private Muestra muestra1;	//DOC
+	private Muestra muestra2;	//DOC
+	private List<Categoria> categorias;	//DOC
+	private List<Desafio> desafiosDisponibles;	//DOC
+	private List<Usuario> usuarios;	//DOC
+	private List<Muestra> muestras;	//DOC
 
 	@BeforeEach
 	void setUp() throws Exception {

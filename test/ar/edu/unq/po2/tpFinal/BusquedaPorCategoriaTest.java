@@ -12,17 +12,17 @@ import org.junit.jupiter.api.Test;
 
 class BusquedaPorCategoriaTest {
 
-	private BusquedaPorCategoria busqueda;
-	private Categoria categoria1;
-	private Categoria categoria2;
-	private Categoria categoria3;
-	private List<Categoria> categoriasAIncluir;
-	private List<Proyecto> proyectos;
-	private Proyecto p1;
-	private Proyecto p2;
-	private Proyecto p3;
-	private Proyecto p4;
-	private Proyecto p5;
+	private BusquedaPorCategoria busqueda;	//SUT
+	private Categoria categoria1;	//DOC
+	private Categoria categoria2;	//DOC
+	private Categoria categoria3;	//DOC
+	private List<Categoria> categoriasAIncluir;	//DOC
+	private List<Proyecto> proyectos;	//DOC
+	private Proyecto p1;	//DOC
+	private Proyecto p2;	//DOC
+	private Proyecto p3;	//DOC
+	private Proyecto p4;	//DOC
+	private Proyecto p5;	//DOC
 	
 	@BeforeEach
 	void setUp() throws Exception {

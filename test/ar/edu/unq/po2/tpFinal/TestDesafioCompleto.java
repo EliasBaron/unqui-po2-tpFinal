@@ -26,7 +26,7 @@ class TestDesafioCompleto {
 	void testGetMomentoSuperacion() {
 		when(desafioUsuario.getMomentoSuperacion()).thenReturn(fechaSuperacion);
 		
-		assertEquals(fechaSuperacion, desafioCompleto.getMomentoSuperacion(fechaSuperacion));
+		assertEquals(fechaSuperacion, desafioCompleto.getMomentoSuperacion());
 	}
 	
 	@Test

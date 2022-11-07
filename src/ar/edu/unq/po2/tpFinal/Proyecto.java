@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Proyecto {
+	
 	private String titulo;
 	private String descripcion;
 	private List<Categoria> categorias = new ArrayList<>();
@@ -46,19 +47,19 @@ public class Proyecto {
 	public void addMuestra(Muestra muestra) {
 		muestras.add(muestra);
 	}
-	
+
 	public List<Desafio> getDesafiosDisponibles() {
 		return desafiosDisponibles;
 	}
-	
+
 	public boolean estaDisponible(Desafio desafio) {
 		return desafiosDisponibles.contains(desafio);
 	}
-	
+
 	public boolean incluyeCategorias(List<Categoria> categorias) {
 		return this.getCategorias().containsAll(categorias);
 	}
-	
+
 	public boolean incluyeTextoEnTitulo(String texto) {
 		return this.getTitulo().contains(texto);
 	}

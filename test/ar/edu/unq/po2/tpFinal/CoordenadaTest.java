@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class CoordenadaTest {
 	
-	Coordenada coordenada;
+	private Coordenada coordenada;
 
 	@BeforeEach
 	void setUp() throws Exception {

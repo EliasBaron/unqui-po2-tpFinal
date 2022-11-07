@@ -3,17 +3,14 @@ package ar.edu.unq.po2.tpFinal;
 import java.util.Date;
 
 public class RestriccionFecha extends RestriccionTemporal {
-	Date fechaInicio;
-	Date fechafin;
 	
-	
+	private Date fechaInicio;
+	private Date fechafin;
 
 	public RestriccionFecha(Date fechaInicio, Date fechafin) {
 		this.fechaInicio = fechaInicio;
 		this.fechafin = fechafin;
 	}
-
-
 
 	@Override
 	public boolean verificar(Date fechaAVerificar) {

@@ -15,27 +15,24 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class UsuarioTest {
-
-	private Muestra muestra1;
-	private Muestra muestra2;
-	// private List<Muestra> muestrasDelUsuario;
-	private Usuario usuario;
-	private TipoRecomendacion recomendacion;
-	private Desafio desafio1;
-	private Desafio desafio2;
+	
+	private Usuario usuario; 	//SUT
+	private Muestra muestra1;	//DOC
+	private TipoRecomendacion recomendacion;	//DOC
+	private Desafio desafio1;	//DOC
+	private Desafio desafio2;	//DOC
 	private List<DesafioUsuario> desafiosUsuario;
-	private DesafioUsuario desafioUsuario1;
-	private DesafioUsuario desafioUsuario2;
-	private DesafioUsuario desafioUsuario3;
-	private Proyecto proyecto1;
-	private TipoRecomendacion recomendacion2;
+	private DesafioUsuario desafioUsuario1;	//DOC
+	private DesafioUsuario desafioUsuario2;	//DOC
+	private DesafioUsuario desafioUsuario3;	//DOC
+	private Proyecto proyecto1;	//DOC
+	private TipoRecomendacion recomendacion2;	//DOC
 	
 
 	@BeforeEach
 	void setUp() throws Exception {
 
 		muestra1 = mock(Muestra.class);
-		muestra2 = mock(Muestra.class);
 
 		recomendacion = mock(TipoRecomendacion.class);
 		recomendacion2 = mock(TipoRecomendacion.class);
@@ -52,6 +49,8 @@ class UsuarioTest {
 		proyecto1 = mock(Proyecto.class);
 
 		usuario = new Usuario(2, 4, 5, recomendacion);
+		
+		usuario.setDesafiosUsuario(desafiosUsuario);
 	}
 
 	@Test
@@ -73,18 +72,17 @@ class UsuarioTest {
 
 	@Test
 	void getSetYGetDesafiosUsuario() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
-
 		assertEquals(desafiosUsuario, usuario.getDesafiosUsuario());
 	}
 
 	@Test
 	void testAddDesafios() {
-		usuario.addDesafioPorAceptar(desafio1);
-		usuario.addDesafioPorAceptar(desafio2);
+		Usuario u2 = new Usuario(0,0,0,recomendacion);
+		u2.addDesafioPorAceptar(desafio1);
+		u2.addDesafioPorAceptar(desafio2);
 
-		assertEquals(2, usuario.getDesafiosUsuario().size()); // no los comparo con el get porque son clases diferentes
-																// cuando se agregan.
+		assertEquals(2, u2.getDesafiosUsuario().size()); // no los comparo con el get 
+															  //porque son clases diferentes													// cuando se agregan.
 	}
 
 	@Test
@@ -106,7 +104,6 @@ class UsuarioTest {
 
 	@Test
 	void testDesafiosUsuarioAceptados() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		when(desafioUsuario1.estaAceptadoAlMomento()).thenReturn(true);
 		when(desafioUsuario2.estaAceptadoAlMomento()).thenReturn(false);
 		when(desafioUsuario3.estaAceptadoAlMomento()).thenReturn(true);
@@ -116,7 +113,6 @@ class UsuarioTest {
 
 	@Test
 	void testNotificarDesafios() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		usuario.notificarDesafios(muestra1);
 
 		verify(desafioUsuario1).evaluarMuestra(muestra1);
@@ -126,7 +122,6 @@ class UsuarioTest {
 
 	@Test
 	void testAceptarDesafio() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		usuario.addProyecto(proyecto1);
 		when(desafioUsuario1.getDesafio()).thenReturn(desafio1);
 		when(proyecto1.estaDisponible(desafio1)).thenReturn(true);
@@ -140,7 +135,6 @@ class UsuarioTest {
 
 	@Test
 	void testgetDesafiosCompletos() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
 		when(desafioUsuario2.getEstaCompleto()).thenReturn(true);
 
@@ -150,7 +144,6 @@ class UsuarioTest {
 
 	@Test
 	void testgetPromedioPorcentajeCompletitud() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
 		when(desafioUsuario2.getEstaCompleto()).thenReturn(true);
 		when(desafioUsuario3.getEstaCompleto()).thenReturn(true);
@@ -161,8 +154,6 @@ class UsuarioTest {
 
 	@Test
 	void excluirDesafiosAceptados() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
-
 		List<Desafio> desafiosAFiltrar = Arrays.asList(desafio1, desafio2);
 
 		when(desafioUsuario1.getDesafio()).thenReturn(desafio1);
@@ -175,7 +166,6 @@ class UsuarioTest {
 
 	@Test
 	void testEstaCompletoDesafio() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
 
 		assertTrue(usuario.estaCompletoDesafio(desafioUsuario1));
@@ -183,15 +173,12 @@ class UsuarioTest {
 
 	@Test
 	void testCalificarDesafio() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
-
 		usuario.calificarDesafio(desafioUsuario1, 5);
 		verify(desafioUsuario1).recibirCalificacion(5);
 	}
 
 	@Test
 	void testFechaSuperacion() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		Date fechaDesafio = mock(Date.class);
 
 		when(desafioUsuario1.getMomentoSuperacion()).thenReturn(fechaDesafio);
@@ -200,9 +187,7 @@ class UsuarioTest {
 	}
 
 	@Test
-	void testDevolverDesafioMayorPuntaje() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
-		
+	void testDevolverDesafioMayorPuntaje() {		
 		when(desafioUsuario1.getEstaCompleto()).thenReturn(true);
 		when(desafioUsuario2.getEstaCompleto()).thenReturn(true);
 		when(desafioUsuario3.getEstaCompleto()).thenReturn(true);
@@ -220,11 +205,12 @@ class UsuarioTest {
 	
 	@Test
 	void testRecibirRecomendacion() {
+		Usuario u2 = new Usuario(0,0,0,recomendacion);
 		List<Desafio> desafios = Arrays.asList(desafio1, desafio2);
-		when(recomendacion.recomendar(usuario, desafios)).thenReturn(desafios);
-		usuario.recibirRecomendaciones(desafios);
+		when(recomendacion.recomendar(u2, desafios)).thenReturn(desafios);
+		u2.recibirRecomendaciones(desafios);
 		
-		assertEquals(2,usuario.getDesafiosUsuario().size());
+		assertEquals(2,u2.getDesafiosUsuario().size());
 	}
 	
 	@Test
@@ -249,7 +235,6 @@ class UsuarioTest {
 	
 	@Test
 	void testSetDesafiosUsuarios() {
-		usuario.setDesafiosUsuario(desafiosUsuario);
 		assertEquals(desafiosUsuario,usuario.getDesafiosUsuario());
 	}
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DesafioCompleto extends EstadoDesafioUsuario {
 
-	DesafioUsuario desafioUsuario;
+	private DesafioUsuario desafioUsuario;
 
 	
 	public DesafioCompleto(DesafioUsuario desafioUsuario) {
@@ -12,8 +12,8 @@ public class DesafioCompleto extends EstadoDesafioUsuario {
 	}
 
 	@Override
-	public Date getMomentoSuperacion(Date fechaSuperacion) {
-		return fechaSuperacion;
+	public Date getMomentoSuperacion() {
+		return desafioUsuario.obtenerFechaSuperacion();
 	}
 
 	@Override

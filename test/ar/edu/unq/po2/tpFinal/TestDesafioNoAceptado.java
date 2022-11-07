@@ -23,7 +23,7 @@ class TestDesafioNoAceptado {
 
 	@Test
 	void testGetMomentoSuperacion() {
-		assertEquals(null, desafioNoAceptado.getMomentoSuperacion(null));
+		assertEquals(null, desafioNoAceptado.getMomentoSuperacion());
 	}
 	
 	@Test

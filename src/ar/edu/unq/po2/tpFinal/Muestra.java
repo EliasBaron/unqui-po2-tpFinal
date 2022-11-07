@@ -5,7 +5,7 @@ import java.util.Date;
 public class Muestra {
 
 	private Date fecha;
-	Coordenada coordenada;
+	private Coordenada coordenada;
 
 	public Muestra(Date fecha, Coordenada coordenada) {
 		this.fecha = fecha;

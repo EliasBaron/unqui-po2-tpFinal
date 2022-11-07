@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 class TestNot {
 	
-	Not not;
-	Filtro operando;
-	List<Proyecto> listaProyectos;
-	Proyecto p1;
-	Proyecto p2;
-	Proyecto p3;
-	Proyecto p4;
-	Proyecto p5;
+	private Not not;	//SUT
+	private Filtro operando;	//DOC
+	private List<Proyecto> listaProyectos;
+	private Proyecto p1;	//DOC
+	private Proyecto p2;	//DOC
+	private Proyecto p3;	//DOC
+	private Proyecto p4;	//DOC
+	private Proyecto p5;	//DOC
 
 
 	@BeforeEach

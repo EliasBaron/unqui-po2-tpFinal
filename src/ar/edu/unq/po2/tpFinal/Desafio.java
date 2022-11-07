@@ -3,6 +3,7 @@ package ar.edu.unq.po2.tpFinal;
 import java.util.List;
 
 public class Desafio {
+	
 	private int cantidadDeMuestrasNecesarias;
 	private int dificultad;
 	private int recompensa;

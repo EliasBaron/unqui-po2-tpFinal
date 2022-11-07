@@ -19,7 +19,7 @@ public class DesafioUsuario {
 	}
 	
 	public Date getMomentoSuperacion() {
-		return estado.getMomentoSuperacion(this.fechaSuperacion);
+		return estado.getMomentoSuperacion();
 	}
 
 	public boolean getEstaCompleto() {
@@ -67,6 +67,7 @@ public class DesafioUsuario {
 	
 	public void evaluarCompletitud(Muestra muestra) {
 		if (cantidadMuestrasTomadas == cantidadMuestrasNecesarias) {
+			fechaSuperacion = muestra.getFecha();
 			this.setEstado(new DesafioCompleto(this));
 		}
 	}
@@ -77,5 +78,9 @@ public class DesafioUsuario {
 
 	public boolean fueAceptadoPreviamente() {
 		return estado.fueAceptadoPreviamente();
+	}
+
+	public Date obtenerFechaSuperacion() {
+		return this.fechaSuperacion;
 	}
 }

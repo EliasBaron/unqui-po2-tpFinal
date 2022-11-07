@@ -11,21 +11,19 @@ import org.junit.jupiter.api.Test;
 
 class DesafioUsuarioTest {
 
-	DesafioUsuario desafioUsuario; //SUT
-	Desafio desafio; //DOC
-	EstadoDesafioUsuario estadoAceptado; //DOC
-	EstadoDesafioUsuario estadoNoAceptado; //DOC
-//	EstadoDesafioUsuario estadoCompleto; //DOC
-	Date fechaSuperacion; //DOC
-	Muestra muestra; //DOC
+	private DesafioUsuario desafioUsuario; //SUT
+	private Desafio desafio; //DOC
+//	private EstadoDesafioUsuario estadoAceptado; //DOC
+//	private EstadoDesafioUsuario estadoNoAceptado; //DOC
+	private Date fechaSuperacion; //DOC
+	private Muestra muestra; //DOC
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		desafio = mock(Desafio.class);
 		when(desafio.getCantidadDeMuestrasNecesarias()).thenReturn(4);
-		estadoNoAceptado = mock(DesafioNoAceptado.class);
-		estadoAceptado = mock(DesafioAceptado.class);
-//		estadoCompleto = mock(DesafioCompleto.class);
+//		estadoNoAceptado = mock(DesafioNoAceptado.class);
+//		estadoAceptado = mock(DesafioAceptado.class);
 		
 		fechaSuperacion = mock(Date.class);
 		muestra = mock(Muestra.class);
@@ -45,8 +43,20 @@ class DesafioUsuarioTest {
 	}
 	
 	@Test
-	void testFueAceptadoPreviamente() {
+	void testFueAceptadoPreviamenteEstadoInicio() {
 		assertFalse(desafioUsuario.fueAceptadoPreviamente());
+	}
+	
+	@Test
+	void testFueAceptadoPreviamenteEstadoCompleto() {
+		desafioUsuario.serAceptado();
+		when(desafio.esMuestraValida(muestra)).thenReturn(true);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		
+		assertTrue(desafioUsuario.fueAceptadoPreviamente());
 	}
 	
 	@Test
@@ -135,5 +145,23 @@ class DesafioUsuarioTest {
 		
 		
 		assertEquals(100, desafioUsuario.getPorcentajeCompletitud());
+	}
+	
+	@Test
+	void testObtenerFechaSuperacion() {
+		assertEquals(null, desafioUsuario.getMomentoSuperacion());
+	}
+	
+	@Test
+	void testObtenerFechaSuperacionConDesafioCompleto() {
+		when(muestra.getFecha()).thenReturn(fechaSuperacion);
+		desafioUsuario.serAceptado();
+		when(desafio.esMuestraValida(muestra)).thenReturn(true);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		desafioUsuario.evaluarMuestra(muestra);
+		
+		assertEquals(fechaSuperacion, desafioUsuario.getMomentoSuperacion());
 	}
 }

@@ -15,12 +15,10 @@ class CategoriaTest {
 	void setUp() throws Exception {
 		nombre = "biología";
 		categoria = new Categoria(nombre);
-		
 	}
 
 	@Test
 	void testgetNombre() {
-		
 		assertEquals(nombre,categoria.getNombre());
 	}
 	
