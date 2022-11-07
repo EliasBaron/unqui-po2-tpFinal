@@ -36,8 +36,10 @@ public class Proyecto {
 	}
 
 	public void addUsuario(Usuario usuario) {
-		usuarios.add(usuario);
-
+		if(!usuarios.contains(usuario)) {
+			usuarios.add(usuario);
+			usuario.addProyecto(this);
+		}
 	}
 
 	public List<Muestra> getMuestras() {

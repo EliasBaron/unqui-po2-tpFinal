@@ -44,7 +44,10 @@ public class Usuario {
 	}
 
 	public void addProyecto(Proyecto proyecto) {
-		proyectosUsuario.add(proyecto);
+		if(!proyectosUsuario.contains(proyecto)) {
+			proyectosUsuario.add(proyecto);
+			proyecto.addUsuario(this);
+		}
 	}
 
 	public int getCantidadMuestrasPreferida() {
